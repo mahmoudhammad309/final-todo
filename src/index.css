@@ -1,0 +1,111 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(95, 65, 230, .7);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  width: 50vw;
+  min-height: 100vh;
+  margin: auto;
+  margin-top: 5rem;
+}
+form {
+  width: inherit;
+  height: 36px;
+  display: flex;
+  justify-content: space-between;
+}
+form input {
+  width: inherit;
+  outline: none;
+  border-radius: 8px 0px 0px 8px;
+}
+form .addBtn {
+  width: 8rem;
+  background-color: transparent;
+  outline: none;
+  border: 1px solid gray;
+  cursor: pointer;
+  background-color: #007FFF;
+  color: #fff;
+  border-radius: 0px 8px 8px 0px;
+}
+.taskSec {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .3rem 0;
+}
+.new-task {
+  width: 100%;
+  flex: 5 1;
+  display: flex;
+  align-items: center;
+}
+.new-task p {
+  width: 90%;
+  margin-left: 1rem;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+.btn-sec {
+  flex: 1 1;
+  display: flex;
+  gap: .2rem;
+}
+.btn-sec button {
+  min-width: 50%;
+  padding: .4rem 1rem;
+  cursor: pointer;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: all .5s ease-in-out;
+}
+.btn-sec .del-btn {
+  border: 1px solid red;
+  color: red;
+}
+.btn-sec .edit-btn {
+  border: 1px solid green;
+  color: green;
+}
+.btn-sec .del-btn:hover {
+  background-color: red;
+  color: #fff;
+}
+.btn-sec .edit-btn:hover {
+  background-color: green;
+  color: #fff;
+}
+.alert {
+  color: red;
+  font-weight: bold;
+}
+.show {
+  display: block;
+}
+.hide {
+  display: none;
+}
