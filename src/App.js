@@ -30,6 +30,14 @@ class App extends Component {
           task: taskInput,
           isChecked: false
         });
+
+        //local storage
+        const newTask = this.state.taskInput;
+        localStorage.setItem(
+          "tasksItems",
+          JSON.stringify([...tasksArr])
+        );
+        
       } else if (allTasksTitle.includes(taskInput)) {
         this.setState({ isRecurring: true })
       }
@@ -38,25 +46,36 @@ class App extends Component {
       // check if the input is empty or not
       this.setState({ isEmptyString: true });
     }
-
+  
     this.setState({ tasksItems: tasksArr, taskInput: '' });
+
+    
+
+ 
   };
 
 
   handleDeleteBtn = (index) => {
-    const tasksItems = this.state.tasksItems.filter((element) => {
+    const getTasksFromLocalSt =JSON.parse(localStorage.getItem("tasksItems"));
+    const tasksItems = getTasksFromLocalSt.filter((element) => {
       return index !== element.id});
-    this.setState({tasksItems})
+    this.setState({tasksItems:tasksItems});
+    localStorage.setItem("tasksItems", JSON.stringify(tasksItems));
+
   }
 
   handleEditTask = (newValue, id ) => {
-    const newArr = this.state.tasksItems.map(task => {
+    const getTasksFromLocalSt = JSON.parse(localStorage.getItem("tasksItems")) || [];
+
+    const newArr = getTasksFromLocalSt.map(task => {
       if(task.id === id) {
         task.task = newValue;
       }
       return task;
     })
-    this.setState({tasksItems: newArr})
+    this.setState({tasksItems: newArr});
+    localStorage.setItem("tasksItems", JSON.stringify(newArr));
+    
   } 
 
   
@@ -76,7 +95,7 @@ class App extends Component {
     }
   };
   render() {
-
+    const getTasksFromLocalSt = JSON.parse(localStorage.getItem("tasksItems")) || [];
     return (
       <section className="container">
         <form className="head" onSubmit={this.handleAddTask}>
@@ -90,8 +109,9 @@ class App extends Component {
         </form>
         {this.renderWarningEmpty()}
         {this.renderWarningRecurring()}
+     
 
-        {this.state.tasksItems.length === 0 &&
+        {getTasksFromLocalSt.length === 0 &&
           "There is nothing to do today :("}
         <ListItems tasksItems={this.state.tasksItems} handleEditTask={this.handleEditTask} handleDeleteBtn={this.handleDeleteBtn}/> 
       </section>
